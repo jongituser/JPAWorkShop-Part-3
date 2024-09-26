@@ -26,9 +26,9 @@ public class Author {
 
     @ManyToMany
     @JoinTable(
-            name = "author_book",  // Join table name
-            joinColumns = @JoinColumn(name = "author_id"),  // Foreign key in join table pointing to Author
-            inverseJoinColumns = @JoinColumn(name = "book_id")  // Foreign key in join table pointing to Book
+            name = "author_book",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     private Set<Book> writtenBooks = new HashSet<>();
 }

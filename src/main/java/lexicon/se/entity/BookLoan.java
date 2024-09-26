@@ -29,11 +29,11 @@ public class BookLoan {
     private boolean returned;
 
     @ManyToOne
-    @JoinColumn(name = "appuser_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "appuser_id")
     private AppUser borrower;
 
     @ManyToOne
-    @JoinColumn(name = ("book_id"), referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = ("book_id"))
     private Book book;
 
     

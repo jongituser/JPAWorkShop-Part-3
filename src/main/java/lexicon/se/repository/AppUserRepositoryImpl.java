@@ -2,7 +2,7 @@ package lexicon.se.repository;
 import lexicon.se.entity.AppUser;
 import java.util.Optional;
 
-public class AppUserDaoImpl implements AppUserDao {
+public class AppUserRepositoryImpl implements AppUserRepository {
     @Override
     public <S extends AppUser> S save(S entity) {
         return null;

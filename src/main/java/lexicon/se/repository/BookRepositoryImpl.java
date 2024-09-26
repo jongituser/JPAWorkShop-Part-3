@@ -5,22 +5,21 @@ import lexicon.se.entity.Book;
 import java.util.List;
 import java.util.Optional;
 
-public class BookDaoImpl implements BookDao{
+public class BookRepositoryImpl implements BookRepository{
     @Override
-    public Book findByIsbnIgnoreCase(String isbn) {
-        return null;
-    }
-
-    @Override
-    public List<Book> findByTitleContainingIgnoreCase(String title) {
+    public List<Book> findByIsbnIgnoreCase(String isbn) {
         return List.of();
     }
 
     @Override
-    public List<Book> findByMaxLoanDays(int maxLoanDays) {
+    public List<Book> findByTitleContainingIgnoreCase(String keyword) {
         return List.of();
     }
 
+    @Override
+    public List<Book> findBooksByMaxLoanDaysLessThan(int maxLoanDays) {
+        return List.of();
+    }
 
     @Override
     public <S extends Book> S save(S entity) {

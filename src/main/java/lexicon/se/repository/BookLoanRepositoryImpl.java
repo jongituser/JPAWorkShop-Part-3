@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class BookLoansImpl implements BookLoanDao{
+public class BookLoanRepositoryImpl implements BookLoanRepository{
     @Override
     public List<BookLoan> findByBorrower_Id(Integer borrowerId) {
         return List.of();
@@ -23,17 +23,17 @@ public class BookLoansImpl implements BookLoanDao{
     }
 
     @Override
-    public List<BookLoan> findOverdueBookLoans() {
+    public List<BookLoan> findOverdueBookLoans(LocalDate currentDate) {
         return List.of();
     }
 
     @Override
-    public List<BookLoan> findByLoanDateBetween(LocalDate startDate, LocalDate endDate) {
+    public List<BookLoan> findBookLoansBetweenDates(LocalDate startDate, LocalDate endDate) {
         return List.of();
     }
 
     @Override
-    public void markAsReturned(Integer loanId) {
+    public void markBookLoanAsReturned(Integer loanId) {
 
     }
 
