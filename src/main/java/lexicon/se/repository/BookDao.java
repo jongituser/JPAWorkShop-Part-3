@@ -13,6 +13,6 @@ public interface BookDao extends CrudRepository<Book, Integer> {
     List<Book> findByTitleContainingIgnoreCase(String title);
 
 
-    List<Book> findByMaxLoanDaysLessThan(int maxLoanDays);
+    List<Book> findByMaxLoanDays (int maxLoanDays);
 
 }

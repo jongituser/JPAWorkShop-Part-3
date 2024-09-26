@@ -17,6 +17,7 @@ public class Details {
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
     private Integer id;
 
     @Column (nullable = false, unique = true)
@@ -30,7 +31,8 @@ public class Details {
     @Column
     private LocalDate birthDate;
 
-    @OneToOne (mappedBy = "id")
-    private AppUser userid;
+    @OneToOne(mappedBy = "details")
+    private AppUser appUser;
+
 
 }

@@ -17,9 +17,10 @@ public class BookDaoImpl implements BookDao{
     }
 
     @Override
-    public List<Book> findByMaxLoanDaysLessThan(int maxLoanDays) {
+    public List<Book> findByMaxLoanDays(int maxLoanDays) {
         return List.of();
     }
+
 
     @Override
     public <S extends Book> S save(S entity) {

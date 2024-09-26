@@ -1,27 +1,27 @@
 package lexicon.se.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Getter
-@Entity
-
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
 
+@Entity
+@Table(name = "app_user")
 public class AppUser {
 
     @Id
-    @Column
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
     private Integer id;
 
-    @Column (nullable = false, unique = true)
+    @Column
     @Setter
     private String username;
 
@@ -32,11 +32,11 @@ public class AppUser {
     @Column
     private LocalTime regDate;
 
-    @Setter
-    @OneToOne (mappedBy = "id", cascade = CascadeType.ALL)
-    private Details userDetails;
+    @OneToOne
+    @JoinColumn(name = "details_id")
+    private Details details;
 
-    @OneToMany(mappedBy = "borrower", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "borrower")
     private Set<BookLoan> bookLoans = new HashSet<>();
 
 }

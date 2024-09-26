@@ -1,4 +1,5 @@
 package lexicon.se.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.HashSet;
@@ -8,26 +9,26 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @ToString
+@EqualsAndHashCode
 
 @Entity
 public class Book {
 
     @Id
-    @Column
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(nullable = false)
     private String isbn;
 
-    @Column
+    @Column(nullable = false)
     private String title;
 
-    @Column
-    private int maxLoanDays;
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
+    private Author author;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "book")  //
     private Set<BookLoan> bookLoans = new HashSet<>();
 }
