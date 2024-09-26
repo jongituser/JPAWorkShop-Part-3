@@ -2,98 +2,66 @@ package lexicon.se.repository;
 
 import lexicon.se.entity.BookLoan;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
-public class BookLoanRepositoryImpl implements BookLoanRepository{
+public class BookLoanRepositoryImpl implements BookLoanRepository {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Override
     public List<BookLoan> findByBorrower_Id(Integer borrowerId) {
-        return List.of();
+        String jpql = "SELECT bl FROM BookLoan bl WHERE bl.borrower.id = :borrowerId";
+        TypedQuery<BookLoan> query = entityManager.createQuery(jpql, BookLoan.class);
+        query.setParameter("borrowerId", borrowerId);
+        return query.getResultList();
     }
 
     @Override
     public List<BookLoan> findByBook_Id(Integer bookId) {
-        return List.of();
+        String jpql = "SELECT bl FROM BookLoan bl WHERE bl.book.id = :bookId";
+        TypedQuery<BookLoan> query = entityManager.createQuery(jpql, BookLoan.class);
+        query.setParameter("bookId", bookId);
+        return query.getResultList();
     }
 
     @Override
     public List<BookLoan> findByReturnedFalse() {
-        return List.of();
+        String jpql = "SELECT bl FROM BookLoan bl WHERE bl.returned = false";
+        TypedQuery<BookLoan> query = entityManager.createQuery(jpql, BookLoan.class);
+        return query.getResultList();
     }
 
     @Override
     public List<BookLoan> findOverdueBookLoans(LocalDate currentDate) {
-        return List.of();
+        String jpql = "SELECT bl FROM BookLoan bl WHERE bl.dueDate < :currentDate AND bl.returned = false";
+        TypedQuery<BookLoan> query = entityManager.createQuery(jpql, BookLoan.class);
+        query.setParameter("currentDate", currentDate);
+        return query.getResultList();
     }
 
     @Override
     public List<BookLoan> findBookLoansBetweenDates(LocalDate startDate, LocalDate endDate) {
-        return List.of();
+        String jpql = "SELECT bl FROM BookLoan bl WHERE bl.loanDate BETWEEN :startDate AND :endDate";
+        TypedQuery<BookLoan> query = entityManager.createQuery(jpql, BookLoan.class);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+        return query.getResultList();
     }
 
     @Override
+    @Transactional
     public void markBookLoanAsReturned(Integer loanId) {
-
+        String jpql = "UPDATE BookLoan bl SET bl.returned = true WHERE bl.id = :loanId";
+        entityManager.createQuery(jpql)
+                .setParameter("loanId", loanId)
+                .executeUpdate();
     }
 
-    @Override
-    public <S extends BookLoan> S save(S entity) {
-        return null;
-    }
 
-    @Override
-    public <S extends BookLoan> Iterable<S> saveAll(Iterable<S> entities) {
-        return null;
-    }
-
-    @Override
-    public Optional<BookLoan> findById(Integer integer) {
-        return Optional.empty();
-    }
-
-    @Override
-    public boolean existsById(Integer integer) {
-        return false;
-    }
-
-    @Override
-    public Iterable<BookLoan> findAll() {
-        return null;
-    }
-
-    @Override
-    public Iterable<BookLoan> findAllById(Iterable<Integer> integers) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void deleteById(Integer integer) {
-
-    }
-
-    @Override
-    public void delete(BookLoan entity) {
-
-    }
-
-    @Override
-    public void deleteAllById(Iterable<? extends Integer> integers) {
-
-    }
-
-    @Override
-    public void deleteAll(Iterable<? extends BookLoan> entities) {
-
-    }
-
-    @Override
-    public void deleteAll() {
-
-    }
 }

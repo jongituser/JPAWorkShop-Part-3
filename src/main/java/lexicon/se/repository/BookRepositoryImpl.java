@@ -1,24 +1,40 @@
 package lexicon.se.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import lexicon.se.entity.Book;
-
+import jakarta.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-public class BookRepositoryImpl implements BookRepository{
+public class BookRepositoryImpl implements BookRepository {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Override
     public List<Book> findByIsbnIgnoreCase(String isbn) {
-        return List.of();
+        String jpql = "SELECT b FROM Book b WHERE LOWER(b.isbn) = LOWER(:isbn)";
+        TypedQuery<Book> query = entityManager.createQuery(jpql, Book.class);
+        query.setParameter("isbn", isbn);
+        return query.getResultList();
     }
 
     @Override
     public List<Book> findByTitleContainingIgnoreCase(String keyword) {
-        return List.of();
+        String jpql = "SELECT b FROM Book b WHERE LOWER(b.title) LIKE LOWER(CONCAT('%', :keyword, '%'))";
+        TypedQuery<Book> query = entityManager.createQuery(jpql, Book.class);
+        query.setParameter("keyword", keyword);
+        return query.getResultList();
     }
 
     @Override
     public List<Book> findBooksByMaxLoanDaysLessThan(int maxLoanDays) {
-        return List.of();
+        String jpql = "SELECT b FROM Book b WHERE b.maxLoanDays < :maxLoanDays";
+        TypedQuery<Book> query = entityManager.createQuery(jpql, Book.class);
+        query.setParameter("maxLoanDays", maxLoanDays);
+        return query.getResultList();
     }
 
     @Override
