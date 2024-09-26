@@ -11,24 +11,24 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
+@Table(name = "author")
 public class Author {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer authorId;
 
-    @Column
+    @Column(nullable = false)
     private String firstName;
 
-    @Column
+    @Column(nullable = false)
     private String lastName;
 
-    @Column
-    private String writtenBook;
-
-    @OneToMany (mappedBy = "author")
-    private Set<Book> books = new HashSet<>();
-
-
+    @ManyToMany
+    @JoinTable(
+            name = "author_book",  // Join table name
+            joinColumns = @JoinColumn(name = "author_id"),  // Foreign key in join table pointing to Author
+            inverseJoinColumns = @JoinColumn(name = "book_id")  // Foreign key in join table pointing to Book
+    )
+    private Set<Book> writtenBooks = new HashSet<>();
 }

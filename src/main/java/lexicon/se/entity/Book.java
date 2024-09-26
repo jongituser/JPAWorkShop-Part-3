@@ -19,16 +19,16 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column
     private String isbn;
 
-    @Column(nullable = false)
+    @Column
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
-    private Author author;
+    @Column
+    private int maxLoanDays;
 
-    @OneToMany(mappedBy = "book")  //
-    private Set<BookLoan> bookLoans = new HashSet<>();
+    @ManyToMany(mappedBy = "writtenBooks")
+    private Set<Author> authors = new HashSet<>();
+
 }
