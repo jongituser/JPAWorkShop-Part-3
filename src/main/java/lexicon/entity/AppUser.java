@@ -7,35 +7,47 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
+@Setter
+
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
 
 @Entity
+@Table (name = "app_user")
 public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Integer id;
 
     @Column
-    @Setter
     private String username;
 
     @Column
-    @Setter
     private String password;
 
     @Column
     private LocalTime regDate;
 
-    /* @OneToOne
+    @OneToOne
     @JoinColumn(name = "details_id")
     private Details details;
 
     @OneToMany(mappedBy = "borrower")
-    private Set<BookLoan> bookLoans = new HashSet<>();*/
+    private Set<BookLoan> bookLoans = new HashSet<>();
+
+
+    public void addBookLoan(BookLoan bookLoan) {
+        bookLoans.add(bookLoan);
+        bookLoan.setBorrower(this);  // Establish the bidirectional relationship
+    }
+
+    public void removeBookLoan(BookLoan bookLoan) {
+        bookLoans.remove(bookLoan);
+        bookLoan.setBorrower(null);  // Break the bidirectional relationship
+    }
+
 
 }

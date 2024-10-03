@@ -4,7 +4,7 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Getter
-
+@Setter
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,28 +12,25 @@ import java.time.LocalDate;
 @ToString
 
 @Entity
+@Table (name = "details")
 public class Details {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Integer id;
 
     @Column
-    @Setter
     private String email;
 
     @Column
-    @Setter
+
     private String name;
 
     @Column
     private LocalDate birthDate;
 
-   /* @OneToOne(mappedBy = "details")
+    @OneToOne(mappedBy = "details")
     private AppUser appUser;
-
-    */
 
 
 }

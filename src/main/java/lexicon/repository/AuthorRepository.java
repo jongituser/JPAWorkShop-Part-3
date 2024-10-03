@@ -12,20 +12,21 @@ import java.util.List;
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
-    //@Query("SELECT a FROM Author a WHERE a.firstName = :firstName")
-    // List<Author> findByFirstName(@Param("firstName") String firstName);
+    @Query("SELECT a FROM Author a WHERE a.firstName = :firstName")
+     List<Author> findByFirstName(@Param("firstName") String firstName);
 
-    //@Query ("SELECT a FROM Author a WHERE a.firstName = :firstName")
-    //List<Author> findByLastName(String lastName);
+    @Query ("SELECT a FROM Author a WHERE a.firstName = :firstName")
+    List<Author> findByLastName(@Param("lastName") String lastName);
 
-    //@Query ("SELECT a FROM Author ")
-    //List<Author> findByFirstNameContainingOrLastNameContaining(String keyword1, String keyword2);
+    @Query("SELECT a FROM Author a WHERE a.firstName LIKE %:keyword% OR a.lastName LIKE %:keyword%")
+    List<Author> findByFirstNameContainingOrLastNameContaining(@Param("keyword") String keyword);
 
-    // List<Author> findAuthorsById(Integer Id);
+    @Query ("SELECT a FROM Author a WHERE a.id = :id")
+    Author findAuthorById (@Param("id") Integer id);
 
-    //@Modifying
-    //@Transactional
-    //@Query("UPDATE Author a SET a.firstName = :firstName, a.lastName = :lastName WHERE a.id = :id")
-    //void updateAuthorNameById(Integer id, String firstName, String lastName);
+    @Modifying
+    @Transactional
+    @Query("UPDATE Author a SET a.firstName = :firstName, a.lastName = :lastName WHERE a.id = :id")
+    void updateAuthorNameById(Integer id, String firstName, String lastName);
 
 }
