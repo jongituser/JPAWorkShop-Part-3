@@ -1,4 +1,4 @@
-package lexicon.se.entity;
+package lexicon.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -26,15 +26,21 @@ public class BookLoan {
     private LocalDate dueDate;
 
     @Column
+    private LocalDate startDate;
+
+    @Column
+    private LocalDate endDate;
+
+    @Column
     private boolean returned;
 
-    @ManyToOne
+    /* @ManyToOne
     @JoinColumn(name = "appuser_id")
     private AppUser borrower;
 
     @ManyToOne
     @JoinColumn(name = ("book_id"))
-    private Book book;
+    private Book book;*/
 
     
 }

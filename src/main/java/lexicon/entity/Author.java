@@ -1,4 +1,4 @@
-package lexicon.se.entity;
+package lexicon.entity;
 
 
 import jakarta.persistence.*;
@@ -11,12 +11,11 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-@Table(name = "author")
 public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer authorId;
+    private Integer id;
 
     @Column(nullable = false)
     private String firstName;
@@ -30,5 +29,5 @@ public class Author {
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
-    private Set<Book> writtenBooks = new HashSet<>();
+    private Set<Book> writtenBooks;
 }

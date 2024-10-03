@@ -1,4 +1,4 @@
-package lexicon.se.entity;
+package lexicon.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,7 +18,7 @@ public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
+    @Column(name = "id")
     private Integer id;
 
     @Column
@@ -32,11 +32,11 @@ public class AppUser {
     @Column
     private LocalTime regDate;
 
-    @OneToOne
+   /* @OneToOne
     @JoinColumn(name = "details_id")
     private Details details;
 
     @OneToMany(mappedBy = "borrower")
-    private Set<BookLoan> bookLoans = new HashSet<>();
+    private Set<BookLoan> bookLoans = new HashSet<>();*/
 
 }
