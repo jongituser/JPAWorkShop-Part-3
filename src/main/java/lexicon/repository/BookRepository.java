@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
+    /*
     @Query("SELECT a FROM Book a WHERE a.isbn = a.isbn")
     List<Book> findByIsbnIgnoreCase(String isbn);
 
@@ -16,5 +17,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findBooksByMaxLoanDaysLessThan(int maxLoanDays);
 
+
+     */
 
 }

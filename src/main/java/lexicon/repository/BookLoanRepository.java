@@ -1,3 +1,5 @@
+package lexicon.repository;
+
 import lexicon.entity.BookLoan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,7 +13,7 @@ import java.util.List;
 @Repository
 public interface BookLoanRepository extends JpaRepository<BookLoan, Integer> {
 
-    // Find all loans for a specific borrower by borrower ID
+    /* Find all loans for a specific borrower by borrower ID
     @Query("SELECT b FROM BookLoan b WHERE b.borrower.id = :borrowerId")
     List<BookLoan> findByBorrower_Id(Integer borrowerId);
 
@@ -34,4 +36,5 @@ public interface BookLoanRepository extends JpaRepository<BookLoan, Integer> {
     void markBookLoanAsReturned(Integer id);
 
     // Optional: Add more methods for further specific queries if needed
+     */
 }

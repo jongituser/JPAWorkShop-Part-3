@@ -13,12 +13,11 @@ import java.util.Set;
 @ToString
 
 @Entity
-@Table(name = "app_user")
 public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column
     private Integer id;
 
     @Column
@@ -32,7 +31,7 @@ public class AppUser {
     @Column
     private LocalTime regDate;
 
-   /* @OneToOne
+    /* @OneToOne
     @JoinColumn(name = "details_id")
     private Details details;
 

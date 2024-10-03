@@ -12,20 +12,18 @@ import java.time.LocalDate;
 @ToString
 
 @Entity
-@Table(name = "details")
 public class Details {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
-    @Column(name = "id")
+    @Column
     private Integer id;
 
-    @Column (nullable = false, unique = true)
+    @Column
     @Setter
     private String email;
 
-    @Column (nullable = false, length = 20)
+    @Column
     @Setter
     private String name;
 

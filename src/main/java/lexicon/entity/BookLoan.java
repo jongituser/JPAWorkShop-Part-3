@@ -11,12 +11,11 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 
 @Entity
-@Table(name = "book_loan")
 public class BookLoan {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer id;
 
     @Column

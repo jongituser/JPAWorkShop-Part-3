@@ -12,27 +12,29 @@ import java.util.Set;
 @EqualsAndHashCode
 
 @Entity
-@Table(name = "book")
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false)
+    @Column
     private Integer id;
 
     @Setter
-    @Column(name = "isbn", nullable = false, updatable = false)
+    @Column
     private String isbn;
 
     @Setter
-    @Column(name = "max_loan_days", nullable = false)
+    @Column
     private int maxLoanDays;
 
     @Setter
-    @Column(name = "title", nullable = false)
+    @Column
     private String title;
 
+    /*
     @ManyToMany(mappedBy = "writtenBooks")
     private Set<Author> authors;
 
+
+     */
 }
